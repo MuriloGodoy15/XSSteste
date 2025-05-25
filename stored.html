@@ -17,7 +17,9 @@
   <h2>Comentários:</h2>
   <div id="comentarios"></div>
 
+  <div class="lkn">
   <a class="links" href="index.html">Voltar para XSS Refletido</a>
+  </div>
 
   <script>
     // Armazena os comentários no localStorage
@@ -26,7 +28,7 @@
 
     const mostrarComentarios = () => {
       const dados = JSON.parse(localStorage.getItem("comentarios")) || [];
-      div.innerHTML = dados.join("<hr>"); // Sem sanitização proposital!
+      div.innerHTML = dados.join("<hr>"); // Sem sanitização proposital
     };
 
     form.addEventListener("submit", e => {
