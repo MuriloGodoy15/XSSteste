@@ -11,13 +11,13 @@
   <p>Este campo abaixo é controlado diretamente pelo JavaScript sem validação:</p>
   <p id="saida"></p>
 
+  <div class="lkn">
+    <a class="link" href="index.html">Voltar</a>
+  </div>
+
   <script>
     const hash = decodeURIComponent(location.hash.slice(1));
     document.getElementById("saida").innerHTML = hash; // Vulnerável
   </script>
-
-  <div class="lkn">
-  <a class="link" href="index.html">Voltar para Refletido</a>
-  </div>
 </body>
 </html>
