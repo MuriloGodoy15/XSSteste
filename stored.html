@@ -1,0 +1,44 @@
+<!-- stored.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Laboratório XSS - Armazenado</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>XSS Armazenado (simulado)</h1>
+  <form id="comentario-form">
+    <label>Deixe um comentário:</label><br>
+    <textarea id="comentario" rows="4" cols="50"></textarea><br>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <h2>Comentários:</h2>
+  <div id="comentarios"></div>
+
+  <a class="links" href="index.html">Voltar para XSS Refletido</a>
+
+  <script>
+    // Armazena os comentários no localStorage
+    const form = document.getElementById("comentario-form");
+    const div = document.getElementById("comentarios");
+
+    const mostrarComentarios = () => {
+      const dados = JSON.parse(localStorage.getItem("comentarios")) || [];
+      div.innerHTML = dados.join("<hr>"); // Sem sanitização proposital!
+    };
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const comentario = document.getElementById("comentario").value;
+      const dados = JSON.parse(localStorage.getItem("comentarios")) || [];
+      dados.push(comentario);
+      localStorage.setItem("comentarios", JSON.stringify(dados));
+      mostrarComentarios();
+    });
+
+    mostrarComentarios();
+  </script>
+</body>
+</html>

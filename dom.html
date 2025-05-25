@@ -1,0 +1,23 @@
+<!-- dom.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Laboratório XSS - DOM</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>XSS DOM-Based</h1>
+  <p>Este campo abaixo é controlado diretamente pelo JavaScript sem validação:</p>
+  <p id="saida"></p>
+
+  <script>
+    const hash = decodeURIComponent(location.hash.slice(1));
+    document.getElementById("saida").innerHTML = hash; // Vulnerável
+  </script>
+
+  <p>Experimente visitar a URL com <code>#<script>alert(1)</script></code></p>
+
+  <a href="index.html">Voltar para Refletido</a>
+</body>
+</html>
